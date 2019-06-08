@@ -33,8 +33,6 @@ Interaction KeypressInteractionReader::nextInteraction()
             {
             case 'X':
                 return Interaction::quit();
-            default:
-                break;
             }
         }
         else
