@@ -16,19 +16,19 @@ EditorModel::EditorModel()
 
 int EditorModel::cursorLine() const
 {
-    return 1;
+    return currentCursorLine;
 }
 
 
 int EditorModel::cursorColumn() const
 {
-    return 1;
+    return currentCursorColumn;
 }
 
 
 int EditorModel::lineCount() const
 {
-    return 1;
+    return numLines;
 }
 
 
@@ -41,17 +41,18 @@ const std::string& EditorModel::line(int lineNumber) const
 
 const std::string& EditorModel::currentErrorMessage() const
 {
-    static std::string removeThis = "";
-    return removeThis;
+    return currentErrMsg;
 }
 
 
 void EditorModel::setErrorMessage(const std::string& errorMessage)
 {
+	currentErrMsg.assign(errorMessage);
 }
 
 
 void EditorModel::clearErrorMessage()
 {
+	currentErrMsg.assign("");
 }
 

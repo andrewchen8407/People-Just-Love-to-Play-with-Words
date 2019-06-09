@@ -79,6 +79,18 @@ public:
 private:
     // Write declarations for any private member variables here.
     // Additionally, you can add any private member functions you'd like.
+
+    // The line number where the cursor currently should reside.
+    int currentCursorLine;
+
+    // The column number where the cursor curently should reside.
+    int currentCursorColumn;
+
+    // The number of lines of text currently in the editor.
+    int numLines;
+
+    // The error message that should be displayed currently.
+    std::string currentErrMsg;
 };
 
 
