@@ -104,7 +104,7 @@ private:
     // The number of lines of text currently in the editor.
     int numLines;
 
-    // The lines of text that currently exist in the text editor.
+    // The text that currently exist in the text editor.
     std::vector<std::string> editorText;
 
     // The error message that should be displayed currently.
