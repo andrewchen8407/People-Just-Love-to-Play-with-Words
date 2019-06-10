@@ -44,6 +44,7 @@
 #define EDITORMODEL_HPP
 
 #include <string>
+#include <vector>
 
 
 
@@ -70,11 +71,25 @@ public:
     // Returns the error message that should be displayed currently.
     const std::string& currentErrorMessage() const;
 
-    // Sets the error message that should be displayed currently.
+    // Modifies the error message that should be displayed currently.
     void setErrorMessage(const std::string& errorMessage);
 
     // Clears the error message that should be displayed currently.
     void clearErrorMessage();
+
+
+    // Write declarations for any other public member functions here.
+
+    // Modifies the line number where the cursor currently should reside.
+    void setCursorLine(int newCursorLine);
+
+    // Modifies the column number where the cursor currently should reside.
+    void setCursorColumn(int newCursorColumn);
+
+    // Modifies the line number where the cursor currently should reside.
+    void setLineCount(int newLineCount);
+
+
 
 private:
     // Write declarations for any private member variables here.
@@ -88,6 +103,9 @@ private:
 
     // The number of lines of text currently in the editor.
     int numLines;
+
+    // The lines of text that currently exist in the text editor.
+    std::vector<std::string> editorText;
 
     // The error message that should be displayed currently.
     std::string currentErrMsg;
