@@ -11,6 +11,11 @@
 
 EditorModel::EditorModel()
 {
+	currentCursorLine = 1;
+	currentCursorColumn = 1;
+	numLines = 1;
+	editorText.push_back("");
+	currentErrMsg.assign("");
 }
 
 

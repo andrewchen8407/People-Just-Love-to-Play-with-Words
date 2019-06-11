@@ -78,6 +78,15 @@ public:
     void clearErrorMessage();
 
 
+    // Write declarations for the functions the execute commands.
+
+    // Moves the cursor one space to the left, if possible.
+    void cursorLeft();
+
+    // Moves the cursor one space to the right, if possible.
+    void cursorRight();
+
+
     // Write declarations for any other public member functions here.
 
     // Modifies the line number where the cursor currently should reside.
