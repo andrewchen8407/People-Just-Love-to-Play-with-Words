@@ -61,40 +61,66 @@ void EditorModel::clearErrorMessage()
 	currentErrMsg.assign("");
 }
 
-void EditorModel::cursorLeft()
+void setCursorLine(int newCursorLine)
 {
-	if (currentCursorColumn == 1)
-	{
-		if (currentCursorLine == 1)
-		{
-
-		}
-		else
-		{
-
-		}
-	}
-	else
-	{
-		EditorModel::clearErrorMessage();
-	}
+	currentCursorLine = newCursorLine;
 }
 
-void EditorModel::cursorRight()
+void setCursorColumn(int newCursorColumn)
 {
-	if (currentCursorColumn > EditorModel::line(currentCursorLine).size())
-	{
-		if (currentCursorLine == numLines)
-		{
+	currentCursorColumn = newCursorColumn;
+}
 
+void setNumLines(int newNumLines)
+{
+	numLines = newNumLines;
+}
+
+void EditorModel::moveCursor(int option)
+{
+	if (option == 1)
+	{
+
+	}
+	else if (option == 2)
+	{
+
+	}
+	else if (option == 3)
+	{
+		if (currentCursorColumn == 1)
+		{
+			if (currentCursorLine == 1)
+			{
+
+			}
+			else
+			{
+
+			}
 		}
 		else
 		{
-
+			EditorModel::clearErrorMessage();
 		}
 	}
-	else
+	else if (option == 4)
 	{
-		EditorModel::clearErrorMessage();
+		if (currentCursorColumn > EditorModel::line(currentCursorLine).size())
+		{
+			if (currentCursorLine == numLines)
+			{
+
+			}
+			else
+			{
+
+			}
+		}
+		else
+		{
+			EditorModel::clearErrorMessage();
+		}
 	}
+	
 }

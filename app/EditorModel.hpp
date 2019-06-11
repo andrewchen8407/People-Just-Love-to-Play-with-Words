@@ -78,15 +78,6 @@ public:
     void clearErrorMessage();
 
 
-    // Write declarations for the functions that execute commands.
-
-    // Moves the cursor one space to the left, if possible.
-    void cursorLeft();
-
-    // Moves the cursor one space to the right, if possible.
-    void cursorRight();
-
-
     // Write declarations for any other public member functions here.
 
     // Modifies the line number where the cursor currently should reside.
@@ -96,7 +87,17 @@ public:
     void setCursorColumn(int newCursorColumn);
 
     // Modifies the line number where the cursor currently should reside.
-    void setLineCount(int newLineCount);
+    void setNumLines(int newNumLines);
+
+
+    // Write declarations for the functions that execute commands.
+
+    // Moves the cursor in the specified direction, if possible.
+    // Option 1 specifies the movement of the cursor one space upward.
+    // Option 2 specifies the movement of the cursor one space downward.
+    // Option 3 specifies the movement of the cursor one space to the left.
+    // Option 4 specifies the movement of the cursor one space to the right.
+    void moveCursor(int option);
 
 
 
