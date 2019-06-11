@@ -61,3 +61,40 @@ void EditorModel::clearErrorMessage()
 	currentErrMsg.assign("");
 }
 
+void EditorModel::cursorLeft()
+{
+	if (currentCursorColumn == 1)
+	{
+		if (currentCursorLine == 1)
+		{
+
+		}
+		else
+		{
+
+		}
+	}
+	else
+	{
+		EditorModel::clearErrorMessage();
+	}
+}
+
+void EditorModel::cursorRight()
+{
+	if (currentCursorColumn > EditorModel::line(currentCursorLine).size())
+	{
+		if (currentCursorLine == numLines)
+		{
+
+		}
+		else
+		{
+
+		}
+	}
+	else
+	{
+		EditorModel::clearErrorMessage();
+	}
+}
