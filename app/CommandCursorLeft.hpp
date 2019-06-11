@@ -9,8 +9,15 @@
 class CommandCursorLeft: public Command
 {
 public:
-    virtual void execute(EditorModel &model) override;
-    virtual void undo(EditorModel &model) override;
+    virtual void execute(EditorModel &model)
+    {
+	    model.moveCursor(3);
+	}
+
+    virtual void undo(EditorModel &model)
+    {
+	    model.moveCursor(4);
+	}
 };
 
 

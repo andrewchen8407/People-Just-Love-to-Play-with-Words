@@ -92,15 +92,22 @@ void EditorModel::moveCursor(int option)
 		{
 			if (currentCursorLine == 1)
 			{
-
+				EditorException error{"Cursor Left failed: " +
+				"cursor is at the start of text file"};
+				EditorModel::setErrorMessage(error.getReason());
+				throw error;
 			}
 			else
 			{
-
+				currentCursorLine = currentCursorLine - 1;
+				currentCursorColumn = EditorModel::line(currentCursorLine).size();
+				currentCursorColumn = currentCursorColumn + 1;
+				EditorModel::clearErrorMessage();
 			}
 		}
 		else
 		{
+			currentCursorColumn = currentCursorColumn - 1;
 			EditorModel::clearErrorMessage();
 		}
 	}
@@ -110,15 +117,21 @@ void EditorModel::moveCursor(int option)
 		{
 			if (currentCursorLine == numLines)
 			{
-
+				EditorException error{"Cursor Right failed: " +
+				"cursor is at the end of text file"};
+				EditorModel::setErrorMessage(error.getReason());
+				throw error;
 			}
 			else
 			{
-
+				currentCursorLine = currentCursorLine + 1;
+				currentCursorColumn = 1;
+				EditorModel::clearErrorMessage();
 			}
 		}
 		else
 		{
+			currentCursorColumn = currentCursorColumn + 1;
 			EditorModel::clearErrorMessage();
 		}
 	}
