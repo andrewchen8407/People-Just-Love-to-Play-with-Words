@@ -93,10 +93,10 @@ public:
     // Write declarations for the functions that execute commands.
 
     // Moves the cursor in the specified manner, if possible.
-    // Option 1 specifies the movement of the cursor one space upward.
-    // Option 2 specifies the movement of the cursor one space downward.
-    // Option 3 specifies the movement of the cursor one space to the left.
-    // Option 4 specifies the movement of the cursor one space to the right.
+    // Option 1 specifies the movement of the cursor one line upward.
+    // Option 2 specifies the movement of the cursor one line downward.
+    // Option 3 specifies the movement of the cursor one column to the left.
+    // Option 4 specifies the movement of the cursor one column to the right.
     // Option 5 specifies the movement of the cursor to the start of the line.
     // Option 6 specifies the movement of the cursor to the end of the line.
     void moveCursor(int option);
