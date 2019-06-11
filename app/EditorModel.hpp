@@ -78,7 +78,7 @@ public:
     void clearErrorMessage();
 
 
-    // Write declarations for the functions the execute commands.
+    // Write declarations for the functions that execute commands.
 
     // Moves the cursor one space to the left, if possible.
     void cursorLeft();
