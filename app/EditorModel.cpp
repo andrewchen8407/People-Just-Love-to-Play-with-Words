@@ -135,5 +135,32 @@ void EditorModel::moveCursor(int option)
 			EditorModel::clearErrorMessage();
 		}
 	}
-	
+	else if (option == 5)
+	{
+		if (currentCursorColumn == 1)
+		{
+			EditorException error{""};
+			EditorModel::setErrorMessage(error.getReason());
+			throw error;
+		}
+		else
+		{
+			currentCursorColumn = 1;
+			EditorModel::clearErrorMessage();
+		}
+	}
+	else if (option == 6)
+	{
+		if (currentCursorColumn > EditorModel::line(currentCursorLine).size())
+		{
+			EditorException error{""};
+			EditorModel::setErrorMessage(error.getReason());
+			throw error;
+		}
+		else
+		{
+			currentCursorColumn = EditorModel::line(currentCursorLine).size() + 1;
+			EditorModel::clearErrorMessage();
+		}
+	}
 }
