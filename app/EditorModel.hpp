@@ -92,6 +92,10 @@ public:
 
     // Write declarations for the functions that execute commands.
 
+    // Inserts a character at the current cursor's position.
+    // The cursor is moved one column to the right.
+    void insertCharacter(char ch);
+    
     // Moves the cursor in the specified manner, if possible.
     // Option 1 specifies the movement of the cursor one line upward.
     // Option 2 specifies the movement of the cursor one line downward.
@@ -100,7 +104,27 @@ public:
     // Option 5 specifies the movement of the cursor to the start of the line.
     // Option 6 specifies the movement of the cursor to the end of the line.
     void moveCursor(int option);
-
+    
+    // Creates a new line underneath the current line.
+    // Any text at or after the cursor on the current
+    // line is moved to the beginning of the new line.
+    // The cursor is moved to the beginning of the new line.
+    void newLine();
+    
+    // Deletes the character at the current cursor's position.
+    // The cursor is moved one column to the left.
+    // Returns the deleted character, if any.
+    char backspace();
+    
+    // Deletes the entire current line of text, with all subsequent
+    // lines moving up to fill the empty space. The cursor remains in
+    // its current location unless the cursor would be beyond the end
+    // of the line of text that now occupies the cursor's line number,
+    // in which case the cursor is placed just beyond the end of that
+    // line of text instead. If there is only one line of text,
+    // it is cleared and the cursor is placed at line 1 column 1.
+    void deleteLine();
+    
 
 
 private:

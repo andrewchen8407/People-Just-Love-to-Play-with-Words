@@ -15,6 +15,9 @@
 
 void InteractionProcessor::run()
 {
+    std::vector<Command> undoStack;
+    std::vector<Command> redoStack;
+    
     view.refresh();
 
     while (true)
@@ -27,9 +30,25 @@ void InteractionProcessor::run()
         }
         else if (interaction.type() == InteractionType::undo)
         {
+            if (undoStack.size())
+            {
+                undoStack.back().undo(model);
+                redoStack.push_back(undoStack.back());
+                undoStack.pop_back();
+                model.clearErrorMessage();
+                view.refresh();
+            }
         }
         else if (interaction.type() == InteractionType::redo)
         {
+            if (redoStack.size())
+            {
+                redoStack.back().execute(model);
+                undoStack.push_back(redoStack.back());
+                redoStack.pop_back();
+                model.clearErrorMessage();
+                view.refresh();
+            }
         }
         else if (interaction.type() == InteractionType::command)
         {

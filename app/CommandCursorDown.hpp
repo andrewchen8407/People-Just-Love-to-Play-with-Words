@@ -17,7 +17,7 @@ public:
 
     virtual void undo(EditorModel &model)
     {
-		model.setCursorLine(model.cursorLine() - 1);
+		model.moveCursor(1);
 	    model.setCursorColumn(prevCol);
 	}
 
