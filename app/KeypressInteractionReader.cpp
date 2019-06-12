@@ -7,7 +7,17 @@
 //
 // YOU WILL NEED TO IMPLEMENT SOME THINGS HERE
 
+#include "Interaction.hpp"
 #include "KeypressInteractionReader.hpp"
+
+#include "CommandBackSpace.hpp"
+#include "CommandCursorDown.hpp"
+#include "CommandCursorEnd.hpp"
+#include "CommandCursorHome.hpp"
+#include "CommandCursorLeft.hpp"
+#include "CommandCursorRight.hpp"
+#include "CommandCursorUp.hpp"
+#include "CommandInsertCharacter.hpp"
 
 
 // You will need to update this member function to watch for the right
@@ -30,6 +40,58 @@ Interaction KeypressInteractionReader::nextInteraction()
             // The user pressed a Ctrl key (e.g., Ctrl+X); react accordingly
 
             switch (keypress.code())
+            case 'I':
+            {
+                Command* cmdptr = new CommandCursorUp;
+                return Interaction::command(cmdptr);
+            }
+            case 'K':
+            {
+                Command* cmdptr = new CommandCursorDown;
+                return Interaction::command(cmdptr);
+            }
+            case 'U':
+            {
+                Command* cmdptr = new CommandCursorLeft;
+                return Interaction::command(cmdptr);
+            }
+            case 'O':
+            {
+                Command* cmdptr = new CommandCursorRight;
+                return Interaction::command(cmdptr);
+            }
+            case 'Y':
+            {
+                Command* cmdptr = new CommandCursorHome;
+                return Interaction::command(cmdptr);
+            }
+            case 'P':
+            {
+                Command* cmdptr = new CommandCursorEnd;
+                return Interaction::command(cmdptr);
+            }
+            case 'J':
+            {
+            }
+            case 'M':
+            {
+            }
+            case 'H':
+            {
+                Command* cmdptr = new CommandBackSpace;
+                return Interaction::command(cmdptr);
+            }
+            case 'D':
+            {
+            }
+            case 'Z':
+            {
+                return Interaction::undo();
+            }
+            case 'A':
+            {
+                return Interaction::redo();
+            }
             {
             case 'X':
                 return Interaction::quit();
@@ -39,6 +101,8 @@ Interaction KeypressInteractionReader::nextInteraction()
         {
             // The user pressed a normal key (e.g., 'h') without holding
             // down Ctrl; react accordingly
+            Command* cmdptr = new CommandInsertCharacter(keypress.code());
+            return Interaction::command(cmdptr);
         }
     }
 }
