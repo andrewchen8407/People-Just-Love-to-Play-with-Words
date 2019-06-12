@@ -18,7 +18,7 @@ public:
     {
         if (ch)
         {
-            model.insertCharacter(&ch);
+            model.insertCharacter(ch);
         }
         else
         {

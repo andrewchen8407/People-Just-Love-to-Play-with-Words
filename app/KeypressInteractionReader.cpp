@@ -100,6 +100,7 @@ Interaction KeypressInteractionReader::nextInteraction()
                 return Interaction::quit();
             }
         }
+        }
         else
         {
             // The user pressed a normal key (e.g., 'h') without holding
