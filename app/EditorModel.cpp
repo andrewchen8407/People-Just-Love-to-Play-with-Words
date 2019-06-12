@@ -11,11 +11,11 @@
 
 EditorModel::EditorModel()
 {
-	currentCursorLine = 1;
-	currentCursorColumn = 1;
-	numLines = 1;
-	editorText.push_back("");
-	currentErrMsg.assign("");
+    currentCursorLine = 1;
+    currentCursorColumn = 1;
+    numLines = 1;
+    editorText.push_back("");
+    currentErrMsg.assign("");
 }
 
 
@@ -51,28 +51,28 @@ const std::string& EditorModel::currentErrorMessage() const
 
 void EditorModel::setErrorMessage(const std::string& errorMessage)
 {
-	currentErrMsg.assign(errorMessage);
+    currentErrMsg.assign(errorMessage);
 }
 
 
 void EditorModel::clearErrorMessage()
 {
-	currentErrMsg.assign("");
+    currentErrMsg.assign("");
 }
 
 void EditorModel::setCursorLine(int newCursorLine)
 {
-	currentCursorLine = newCursorLine;
+    currentCursorLine = newCursorLine;
 }
 
 void EditorModel::setCursorColumn(int newCursorColumn)
 {
-	currentCursorColumn = newCursorColumn;
+    currentCursorColumn = newCursorColumn;
 }
 
 void EditorModel::setNumLines(int newNumLines)
 {
-	numLines = newNumLines;
+    numLines = newNumLines;
 }
 
 void EditorModel::insertCharacter(char ch)
@@ -83,127 +83,124 @@ void EditorModel::insertCharacter(char ch)
 
 void EditorModel::moveCursor(int option)
 {
-	if (option == 1)
-	{
+    if (option == 1)
+    {
         if (EditorModel::cursorLine() > 1)
-		{
-			if (EditorModel::cursorColumn() > EditorModel::line(EditorModel::cursorLine() - 1).size() + 1)
-			{
-				EditorModel::setCursorColumn(EditorModel::line(EditorModel::cursorLine() - 1).size() + 1);
-			}
-			EditorModel::setCursorLine(EditorModel::cursorLine() - 1);
-			EditorModel::clearErrorMessage();
-		}
-		else
-		{
+        {
+            if (EditorModel::cursorColumn() > EditorModel::line(EditorModel::cursorLine() - 1).size() + 1)
+            {
+                EditorModel::setCursorColumn(EditorModel::line(EditorModel::cursorLine() - 1).size() + 1);
+            }
+            EditorModel::setCursorLine(EditorModel::cursorLine() - 1);
+            EditorModel::clearErrorMessage();
+        }
+        else
+        {
             std::string errMsg;
-            errMsg.assign("Cursor Up failed: " +
-                          "cursor is on the first line");
+            errMsg.assign("Cursor Up failed: cursor is on the first line");
             EditorModel::setErrorMessage(errMsg);
             throw EditorException(errMsg);
-		}
-	}
-	else if (option == 2)
-	{
+        }
+    }
+    else if (option == 2)
+    {
         if (EditorModel::cursorLine() < EditorModel::lineCount())
-		{
-			if (EditorModel::cursorColumn() > EditorModel::line(EditorModel::cursorLine() + 1).size() + 1)
-			{
-				EditorModel::setCursorColumn(EditorModel::line(EditorModel::cursorLine() + 1).size() + 1);
-			}
-			EditorModel::setCursorLine(EditorModel::cursorLine() + 1);
-			EditorModel::clearErrorMessage();
-		}
-		else
-		{
+        {
+            if (EditorModel::cursorColumn() > EditorModel::line(EditorModel::cursorLine() + 1).size() + 1)
+            {
+                EditorModel::setCursorColumn(EditorModel::line(EditorModel::cursorLine() + 1).size() + 1);
+            }
+            EditorModel::setCursorLine(EditorModel::cursorLine() + 1);
+            EditorModel::clearErrorMessage();
+        }
+        else
+        {
             std::string errMsg;
-            errMsg.assign("Cursor Down failed: " +
-                          "cursor is on the last line");
+            errMsg.assign("Cursor Down failed: cursor is on the last line");
             EditorModel::setErrorMessage(errMsg);
             throw EditorException(errMsg);
-		}
-	}
-	else if (option == 3)
-	{
-		if (EditorModel::cursorColumn() > 1)
-		{
-			EditorModel::setCursorColumn(EditorModel::cursorColumn() - 1);
-			EditorModel::clearErrorMessage();
-		}
-		else
-		{
-			if (EditorModel::cursorLine() > 1)
-			{
-				EditorModel::setCursorLine(EditorModel::cursorLine() - 1);
+        }
+    }
+    else if (option == 3)
+    {
+        if (EditorModel::cursorColumn() > 1)
+        {
+            EditorModel::setCursorColumn(EditorModel::cursorColumn() - 1);
+            EditorModel::clearErrorMessage();
+        }
+        else
+        {
+            if (EditorModel::cursorLine() > 1)
+            {
+                EditorModel::setCursorLine(EditorModel::cursorLine() - 1);
                 EditorModel::setCursorColumn(EditorModel::line(EditorModel::cursorLine()).size() + 1);
-				EditorModel::clearErrorMessage();
-			}
-			else
-			{
+                EditorModel::clearErrorMessage();
+            }
+            else
+            {
                 std::string errMsg;
-                errMsg.assign("Cursor Left failed: " +
-                              "cursor is at the start of text file");
+                errMsg.assign("Cursor Left failed: cursor is at the start of text file");
                 EditorModel::setErrorMessage(errMsg);
                 throw EditorException(errMsg);
-		}
-	}
-	else if (option == 4)
-	{
-		if (EditorModel::cursorColumn() > EditorModel::line(EditorModel::cursorLine()).size())
-		{
-			if (EditorModel::cursorLine() < EditorModel::lineCount())
-			{
-				EditorModel::setCursorLine(EditorModel::cursorLine() + 1);
-				EditorModel::setCursorColumn(1);
-				EditorModel::clearErrorMessage();
-			}
-			else
-			{
+            }
+        }
+    }
+    else if (option == 4)
+    {
+        if (EditorModel::cursorColumn() > EditorModel::line(EditorModel::cursorLine()).size())
+        {
+            if (EditorModel::cursorLine() < EditorModel::lineCount())
+            {
+                EditorModel::setCursorLine(EditorModel::cursorLine() + 1);
+                EditorModel::setCursorColumn(1);
+                EditorModel::clearErrorMessage();
+            }
+            else
+            {
                 std::string errMsg;
-                errMsg.assign("Cursor Right failed: " +
-                              "cursor is at the end of text file");
+                errMsg.assign("Cursor Right failed: cursor is at the end of text file");
                 EditorModel::setErrorMessage(errMsg);
                 throw EditorException(errMsg);
-			}
-		}
-		else
-		{
-			EditorModel::setCursorColumn(EditorModel::cursorColumn() + 1);
-			EditorModel::clearErrorMessage();
-		}
-	}
-	else if (option == 5)
-	{
-		if (EditorModel::cursorColumn() > 1)
-		{
-			EditorModel::setCursorColumn(1);
-			EditorModel::clearErrorMessage();
-		}
-		else
-		{
+            }
+        }
+        else
+        {
+            EditorModel::setCursorColumn(EditorModel::cursorColumn() + 1);
+            EditorModel::clearErrorMessage();
+        }
+    }
+    else if (option == 5)
+    {
+        if (EditorModel::cursorColumn() > 1)
+        {
+            EditorModel::setCursorColumn(1);
+            EditorModel::clearErrorMessage();
+        }
+        else
+        {
             std::string errMsg;
             errMsg.assign("");
             EditorModel::setErrorMessage(errMsg);
             throw EditorException(errMsg);
-		}
-	}
-	else if (option == 6)
-	{
-		if (EditorModel::cursorColumn() > EditorModel::line(EditorModel::cursorLine()).size())
-		{
+        }
+    }
+    else if (option == 6)
+    {
+        if (EditorModel::cursorColumn() > EditorModel::line(EditorModel::cursorLine()).size())
+        {
             std::string errMsg;
             errMsg.assign("");
             EditorModel::setErrorMessage(errMsg);
             throw EditorException(errMsg);
-		}
-		else
-		{
-			EditorModel::setCursorColumn(EditorModel::line(EditorModel::cursorLine()).size() + 1);
-			EditorModel::clearErrorMessage();
-		}
-	}
+        }
+        else
+        {
+            EditorModel::setCursorColumn(EditorModel::line(EditorModel::cursorLine()).size() + 1);
+            EditorModel::clearErrorMessage();
+        }
+    }
 }
-    
+
 void EditorModel::newLine()
 {
     editorText.insert(editorText.begin() + EditorModel::cursorLine(), "");
@@ -220,8 +217,7 @@ char EditorModel::backspace()
         if (EditorModel::cursorLine() == 1)
         {
             std::string errMsg;
-            errMsg.assign("Backspace failed: " +
-                          "cursor is at the start of text file");
+            errMsg.assign("Backspace failed: cursor is at the start of text file");
             EditorModel::setErrorMessage(errMsg);
             throw EditorException(errMsg);
         }
@@ -246,5 +242,5 @@ char EditorModel::backspace()
 
 void EditorModel::deleteLine()
 {
-        
+    
 }
