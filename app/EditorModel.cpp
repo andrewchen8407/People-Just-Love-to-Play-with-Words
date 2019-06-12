@@ -77,7 +77,8 @@ void EditorModel::setNumLines(int newNumLines)
 
 void EditorModel::insertCharacter(char ch)
 {
-    editorText.at(EditorModel::cursorLine() - 1).insert(EditorModel::cursorColumn() - 1, ch);
+    std::string s(1, ch);
+    editorText.at(EditorModel::cursorLine() - 1).insert(EditorModel::cursorColumn() - 1, s);
     EditorModel::setCursorColumn(EditorModel::cursorColumn() + 1);
 }
 
@@ -234,7 +235,7 @@ char EditorModel::backspace()
     else
     {
         char ch = EditorModel::line(EditorModel::cursorLine())[EditorModel::cursorColumn() - 2];
-        editor.at(EditorModel::cursorLine() - 1).erase(EditorModel::cursorColumn() - 2, 1);
+        editorText.at(EditorModel::cursorLine() - 1).erase(EditorModel::cursorColumn() - 2, 1);
         EditorModel::setCursorColumn(EditorModel::cursorColumn() - 1);
         return ch;
     }
