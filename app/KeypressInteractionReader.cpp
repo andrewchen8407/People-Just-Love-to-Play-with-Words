@@ -86,7 +86,6 @@ Interaction KeypressInteractionReader::nextInteraction()
             }
             case 'D':
             {
-                return Interaction::undo();//
             }
             case 'Z':
             {

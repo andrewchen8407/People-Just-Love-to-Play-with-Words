@@ -16,7 +16,7 @@ public:
     
     virtual void execute(EditorModel &model)
     {
-        model.insertCharacter(&ch);
+        model.insertCharacter(ch);
 	}
 
     virtual void undo(EditorModel &model)
