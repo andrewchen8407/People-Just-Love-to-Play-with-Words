@@ -40,6 +40,7 @@ Interaction KeypressInteractionReader::nextInteraction()
             // The user pressed a Ctrl key (e.g., Ctrl+X); react accordingly
 
             switch (keypress.code())
+            {
             case 'I':
             {
                 Command* cmdptr = new CommandCursorUp;
