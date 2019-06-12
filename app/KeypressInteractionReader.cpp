@@ -10,7 +10,7 @@
 #include "Interaction.hpp"
 #include "KeypressInteractionReader.hpp"
 
-#include "CommandBackSpace.hpp"
+#include "CommandBackspace.hpp"
 #include "CommandCursorDown.hpp"
 #include "CommandCursorEnd.hpp"
 #include "CommandCursorHome.hpp"
@@ -78,7 +78,7 @@ Interaction KeypressInteractionReader::nextInteraction()
             }
             case 'H':
             {
-                Command* cmdptr = new CommandBackSpace;
+                Command* cmdptr = new CommandBackspace;
                 return Interaction::command(cmdptr);
             }
             case 'D':
