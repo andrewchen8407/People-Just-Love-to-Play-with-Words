@@ -15,8 +15,8 @@
 
 void InteractionProcessor::run()
 {
-    std::vector<Command> undoStack;
-    std::vector<Command> redoStack;
+    std::vector<Command*> undoStack;
+    std::vector<Command*> redoStack;
     
     view.refresh();
 
@@ -26,13 +26,21 @@ void InteractionProcessor::run()
 
         if (interaction.type() == InteractionType::quit)
         {
+            for (Command* cmd : undoStack)
+            {
+                delete cmd;
+            }
+            for (Command* cmd : redoStack)
+            {
+                delete cmd;
+            }
             break;
         }
         else if (interaction.type() == InteractionType::undo)
         {
             if (undoStack.size())
             {
-                undoStack.back().undo(model);
+                undoStack.back()->undo(model);
                 redoStack.push_back(undoStack.back());
                 undoStack.pop_back();
                 model.clearErrorMessage();
@@ -43,7 +51,7 @@ void InteractionProcessor::run()
         {
             if (redoStack.size())
             {
-                redoStack.back().execute(model);
+                redoStack.back()->execute(model);
                 undoStack.push_back(redoStack.back());
                 redoStack.pop_back();
                 model.clearErrorMessage();
