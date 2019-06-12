@@ -72,9 +72,11 @@ Interaction KeypressInteractionReader::nextInteraction()
             }
             case 'J':
             {
+                return Interaction::undo();//
             }
             case 'M':
             {
+                return Interaction::undo();//
             }
             case 'H':
             {
@@ -83,6 +85,7 @@ Interaction KeypressInteractionReader::nextInteraction()
             }
             case 'D':
             {
+                return Interaction::undo();//
             }
             case 'Z':
             {
