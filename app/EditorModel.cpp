@@ -77,7 +77,7 @@ void EditorModel::setNumLines(int newNumLines)
 
 void EditorModel::insertCharacter(char ch)
 {
-    EditorModel::line(EditorModel::cursorLine()).insert(EditorModel::cursorColumn() - 1, ch);
+    editorText.at(EditorModel::cursorLine() - 1).insert(EditorModel::cursorColumn() - 1, ch);
     EditorModel::setCursorColumn(EditorModel::cursorColumn() + 1);
 }
 
@@ -226,15 +226,15 @@ char EditorModel::backspace()
             EditorModel::setCursorLine(EditorModel::cursorLine() - 1);
             EditorModel::setNumLines(EditorModel::lineCount() - 1);
             int lineIndex = EditorModel::cursorLine();
-            EditorModel::line(lineIndex).append(EditorModel::line(lineIndex + 1));
-            editorText.erase(lineIndex + 1);
+            editorText.at(lineIndex - 1).append(EditorModel::line(lineIndex + 1));
+            editorText.erase(editorText.begin() + lineIndex);
             return '\0';
         }
     }
     else
     {
         char ch = EditorModel::line(EditorModel::cursorLine())[EditorModel::cursorColumn() - 2];
-        EditorModel::line(EditorModel::cursorLine()).erase(EditorModel::cursorColumn() - 2, 1);
+        editor.at(EditorModel::cursorLine() - 1).erase(EditorModel::cursorColumn() - 2, 1);
         EditorModel::setCursorColumn(EditorModel::cursorColumn() - 1);
         return ch;
     }
